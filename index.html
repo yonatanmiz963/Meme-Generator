@@ -26,16 +26,22 @@
     <main>
 
         <section class="editor flex space-between max-width">
-            <div class="canvas-container">
+
+            <div class="canvas-container align-self-center">
                 <canvas id="my-canvas" width="500" height="500" style="outline:1px solid rgb(0, 0, 0)"></canvas>
             </div>
-            <div class="normal-edit flex justify-content">
-                <div class="text-editor">
-                    <input onchange="onChangeText()" class="text-input" name="line-text" value="" placeholder="Add text">
 
+            <div class="normal-edit flex justify-content direction-column">
+                <div class="text-editor">
+                    <input onchange="onChangeText()" class="text-input" name="line-text" value="" placeholder="  Add text">
+                    <a class="editor-btn flex justify-content align-items" onclick="onSwitchLine()">Switch Line</a>
+                    <a class="editor-btn flex justify-content align-items" onclick="onMoveLine()"><img class="button-image" src="design/icons/up-and-down-opposite-double-arrows-side-by-side.png"></a>
                 </div>
 
-                <div class="advanced-edit"></div>
+                <div class="advanced-edit">
+                    <a class="editor-btn flex justify-content align-items" onclick="onChangeFontSize('+')"><img class="button-image" src="design/icons/increase font - icon.png"></a>
+                    <a class="editor-btn flex justify-content align-items" onclick="onChangeFontSize('-')"><img class="button-image" src="design/icons/decrease font - icon.png"></a>
+                </div>
 
             </div>
         </section>
@@ -45,7 +51,7 @@
         <section class="gallery max-width">
             <div class="search-bar"></div>
             <div class="filter-words "></div>
-            <div class="img-container grid">
+            <div class="img-container gallery-grid">
                 <div onclick="onLoadImage(1)" class="image image1 "></div>
                 <div class="image image2 "></div>
                 <div class="image image2 "></div>

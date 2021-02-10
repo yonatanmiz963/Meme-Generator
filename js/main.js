@@ -4,6 +4,7 @@
 var gElCanvas;
 var gCtx;
 var gImg;
+var gCurrLine = 0;
 
 function initCanvas() {
     gElCanvas = document.getElementById('my-canvas');
@@ -16,6 +17,7 @@ function resizeCanvas() {
     var elContainer = document.querySelector('.canvas-container');
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetWidth;
+    // console.log(gElCanvas);
     // gElCanvas.height = elContainer.offsetHeight;
 }
 
@@ -41,7 +43,7 @@ function drawTextLines() {
     let memeLines = getText();
 
     memeLines.forEach(line => {
-        drawText(line.txt, line.align, line.color, line.size);
+        drawText(line.txt, line.align, line.color, line.size, line.height);
     });
 }
 
@@ -51,14 +53,14 @@ function getImageById(id) {
 }
 
 
-function drawText(text, align, color, size, x = 250, y = 75) {
-    gCtx.lineWidth = 2
-    gCtx.strokeStyle = 'black'
+function drawText(text, align, color, size, height = 50, x = gElCanvas.width * 0.25) {
+    gCtx.lineWidth = 2;
+    gCtx.strokeStyle = 'black';
     gCtx.fillStyle = color;
     gCtx.font = `${size}px impact`;
     gCtx.textAlign = align;
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+    gCtx.fillText(text, x, height);
+    gCtx.strokeText(text, x, height);
 }
 
 function getText() {
@@ -78,4 +80,34 @@ function clearCanvas() {
 
 function getCurrMeme() {
     return getMeme();
+}
+
+function onChangeFontSize(value) {
+    let diff = (value === '+') ? 2 : -2;
+    let meme = getCurrMeme();
+    meme.lines[gCurrLine].size += diff;
+    updateMeme(meme);
+    clearCanvas();
+    drawMeme(gImg);
+}
+
+function onMoveLine() {
+    let meme = getCurrMeme();
+    console.log(meme);
+    meme.lines[gCurrLine].height += 15;
+    if (meme.lines[gCurrLine].height >= gElCanvas.height) meme.lines[gCurrLine].height = 0;
+
+    updateMeme(meme);
+    clearCanvas();
+    drawMeme(gImg);
+}
+
+
+function onSwitchLine() {
+    let meme = getCurrMeme();
+    console.log('meme:', meme.lines.length);
+
+    gCurrLine++;
+    if (gCurrLine >= meme.lines.length) gCurrLine = 0;
+    console.log(gCurrLine);
 }

@@ -33,11 +33,15 @@ function setMeme(id) {
     let meme = {
         selectedImgId: id,
         selectedLineIdx: 0,
-        lines: [{ txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red' }]
+        lines: [
+            { txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red', height: 50 },
+            { txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red', height: 50 },
+            { txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red', height: 50 }
+        ]
     };
 
     gMeme = meme;
-    console.log(gMeme);
+    // console.log(gMeme);
 }
 
 function getMemeText() {
@@ -45,10 +49,15 @@ function getMemeText() {
 }
 
 function changeText(newText) {
-    gMeme.lines[0].txt = newText;
+    gMeme.lines[gCurrLine].txt = newText;
     console.log(gMeme.lines);
 }
 
 function getMeme() {
     return gMeme;
+}
+
+
+function updateMeme(meme) {
+    gMeme = meme;
 }
