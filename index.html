@@ -25,11 +25,18 @@
 
     <main>
 
-        <section class="editor max-width">
-            <div class="text-edit"></div>
-            <div class="advanced-edit"></div>
+        <section class="editor flex space-between max-width">
             <div class="canvas-container">
                 <canvas id="my-canvas" width="500" height="500" style="outline:1px solid rgb(0, 0, 0)"></canvas>
+            </div>
+            <div class="normal-edit flex justify-content">
+                <div class="text-editor">
+                    <input onchange="onChangeText()" class="text-input" name="line-text" value="" placeholder="Add text">
+
+                </div>
+
+                <div class="advanced-edit"></div>
+
             </div>
         </section>
 

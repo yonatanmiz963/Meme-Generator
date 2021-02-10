@@ -9,6 +9,7 @@ var gMeme;
 //     lines: [{ txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red' }]
 // }
 
+
 var gKeywords = {
     'happy': 12,
     'funny puk': 1
@@ -37,4 +38,17 @@ function setMeme(id) {
 
     gMeme = meme;
     console.log(gMeme);
+}
+
+function getMemeText() {
+    return gMeme.lines;
+}
+
+function changeText(newText) {
+    gMeme.lines[0].txt = newText;
+    console.log(gMeme.lines);
+}
+
+function getMeme() {
+    return gMeme;
 }

@@ -50,11 +50,8 @@ button:hover {
     flex-direction: row;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
-    grid-auto-rows: 250px;
-    gap: 10px;
+.align-self-center {
+    align-self: center;
 }
 
 
@@ -68,6 +65,13 @@ button:hover {
 
 
 /* COMPONENTS */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
+    grid-auto-rows: 250px;
+    gap: 10px;
+}
 
 .nav-bar {
     width: 100%;
@@ -114,9 +118,21 @@ header {
 }
 
 .canvas-container {
+    flex-basis: 50%;
     max-width: 500px;
     max-height: 500px;
 }
+
+.normal-edit {
+    flex-basis: 45%;
+}
+
+.text-input {
+    width: 200px;
+}
+
+
+/* FONTS */
 
 @font-face {
     src: url(../fonts/impact/impact.ttf);
