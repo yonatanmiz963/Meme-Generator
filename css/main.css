@@ -30,8 +30,8 @@ button:hover {
 }
 
 .max-width {
-    margin-left: 50px;
-    margin-right: 50px;
+    /* margin-left: 50px; */
+    /* margin-right: 50px; */
 }
 
 .flex-end {
@@ -84,10 +84,10 @@ button:hover {
 }
 
 header {
-    background-color: #FF7F00;
+    background-color: #408af8;
 }
 
-.menu li:first-child {
+.menu li:first-of-type {
     margin-inline-end: 20px;
 }
 
@@ -98,7 +98,6 @@ header {
 
 .nav-btn {
     height: 100%
-    /* width: 66px; */
 }
 
 .img-container {
@@ -146,6 +145,8 @@ header {
 }
 
 .text-input {
+    font-size: 1.25rem;
+    font-weight: bold;
     grid-area: 1 / 1 / 1 / 6;
 }
 
@@ -181,6 +182,12 @@ header {
 
 .button-image {
     width: 75%;
+}
+
+.profile-container {
+    width: 892px;
+    height: 323px;
+    background-color: lightgray;
 }
 
 
