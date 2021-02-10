@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+
+/* BASICS */
+
+a,
+button:hover {
+    cursor: pointer;
+}
+
+
+/* img {
+    width: 100%;
+} */
+
+
+/* HELPERS */
+
+.flex {
+    display: flex;
+}
+
+.flex.justify-content {
+    justify-content: center;
+}
+
+.flex.align-items {
+    align-items: center;
+}
+
+.max-width {
+    width: 1101px;
+}
+
+.flex-end {
+    align-self: flex-end;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.direction-column {
+    flex-direction: column;
+}
+
+.flex.direction-rows {
+    flex-direction: row;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
+    grid-auto-rows: 250px;
+    gap: 10px;
+}
+
+
+/* list helpers */
+
+.clean-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+
+/* COMPONENTS */
+
+header {
+    background-color: #FF7F00;
+}
+
+.menu a {
+    height: px;
+}
+
+.menu a:first-child {
+    margin-inline-end: 20px;
+}
+
+.img-container {
+    height: 933px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+
+/* image {
+    width: 100pxx;
+    height: 100px;
+} */
+
+.image:hover {
+    cursor: pointer;
+}
+
+.image1 {
+    background: url("../meme-imgs/1.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+
+.image2 {
+    background: url("../meme-imgs/2.jpg");
+    background-position: center center;
+    background-size: cover;
+}
