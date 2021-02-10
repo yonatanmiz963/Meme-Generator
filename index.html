@@ -10,10 +10,10 @@
 </head>
 
 <body>
-    <header class="header flex justify-content align-items">
+    <header class="header flex align-items justify-content">
         <nav class="nav-bar max-width flex space-between">
 
-            <div class="logo">Logo</div>
+            <div class="logo ">Logo</div>
 
             <ul class="menu clean-list flex direction-rows">
                 <li><a>Gallery</a></li>
@@ -24,42 +24,46 @@
     </header>
 
     <main>
-        <section class="gallery">
 
-            <div class="search-bar"></div>
-
-            <div class="filter-words"></div>
-
-            <div class="img-container grid">
-                <div onclick="" class="image image1"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-                <div class="image image2"></div>
-
-
-
+        <section class="editor max-width">
+            <div class="text-edit"></div>
+            <div class="advanced-edit"></div>
+            <div class="canvas-container">
+                <canvas id="my-canvas" width="500" height="500" style="outline:1px solid rgb(0, 0, 0)"></canvas>
             </div>
-
-
         </section>
-        <section class="profile"></section>
+
+
+
+        <section class="gallery max-width">
+            <div class="search-bar"></div>
+            <div class="filter-words "></div>
+            <div class="img-container grid">
+                <div onclick="onLoadImage(1)" class="image image1 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+                <div class="image image2 "></div>
+            </div>
+        </section>
+
+        <section class="profile "></section>
 
     </main>
 
@@ -68,7 +72,8 @@
 
 
 
-    <script src="js/main.js"></script>
+    <script src="js/meme-service.js "></script>
+    <script src="js/main.js "></script>
 </body>
 
 </html>
