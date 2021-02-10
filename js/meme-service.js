@@ -3,13 +3,6 @@
 var gMeme;
 
 
-// var gMeme = {
-//     selectedImgId: 5,
-//     selectedLineIdx: 0,
-//     lines: [{ txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red' }]
-// }
-
-
 var gKeywords = {
     'happy': 12,
     'funny puk': 1
@@ -49,8 +42,8 @@ function getMemeText() {
     return gMeme.lines;
 }
 
-function changeText(newText) {
-    gMeme.lines[gCurrLine].txt = newText;
+function changeText(newText, currLine) {
+    gMeme.lines[currLine].txt = newText;
     console.log(gMeme.lines);
 }
 

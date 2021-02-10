@@ -36,7 +36,6 @@ function onLoadImage(id) {
 function drawMeme(img) {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
     drawTextLines();
-
 }
 
 function drawTextLines() {
@@ -45,11 +44,6 @@ function drawTextLines() {
     memeLines.forEach(line => {
         drawText(line.txt, line.align, line.color, line.size, line.height);
     });
-}
-
-
-function getImageById(id) {
-    return getImage(id);
 }
 
 
@@ -63,23 +57,16 @@ function drawText(text, align, color, size, height = 50, x = gElCanvas.width * 0
     gCtx.strokeText(text, x, height);
 }
 
-function getText() {
-    return getMemeText();
-}
 
 function onChangeText() {
     let newText = document.querySelector('[name="line-text"]').value;
-    changeText(newText);
+    changeText(newText, gCurrLine);
     clearCanvas();
     drawMeme(gImg);
 }
 
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
-}
-
-function getCurrMeme() {
-    return getMeme();
 }
 
 function onChangeFontSize(value) {
@@ -110,4 +97,22 @@ function onSwitchLine() {
     gCurrLine++;
     if (gCurrLine >= meme.lines.length) gCurrLine = 0;
     console.log(gCurrLine);
+}
+
+
+
+function getCurrMeme() {
+    return getMeme();
+}
+
+
+
+function getImageById(id) {
+    return getImage(id);
+}
+
+
+
+function getText() {
+    return getMemeText();
 }
