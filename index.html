@@ -10,14 +10,14 @@
 </head>
 
 <body>
-    <header class="header flex align-items justify-content">
-        <nav class="nav-bar max-width flex space-between">
+    <header class="header">
+        <nav class="nav-bar flex space-between main-container align-items">
 
-            <div class="logo ">Logo</div>
+            <div class="logo"><img src="design/logo/LOGO.png"></div>
 
-            <ul class="menu clean-list flex direction-rows">
-                <li><a>Gallery</a></li>
-                <li><a>About</a></li>
+            <ul class="menu clean-list flex">
+                <li class="flex justify-content align-items"><a class="nav-btn flex justify-content align-items">Gallery</a></li>
+                <li class="flex"><a class="nav-btn flex justify-content align-items">About</a></li>
             </ul>
 
         </nav>
@@ -25,7 +25,7 @@
 
     <main>
 
-        <section class="editor flex space-between max-width">
+        <section class="editor main-container flex space-between max-width">
 
             <div class="canvas-container align-self-center">
                 <canvas id="my-canvas" width="500" height="500" style="outline:1px solid rgb(0, 0, 0)"></canvas>
@@ -34,7 +34,7 @@
             <div class="normal-edit flex justify-content direction-column">
                 <div class="text-editor">
                     <input onchange="onChangeText()" class="text-input" name="line-text" value="" placeholder="  Add text">
-                    <a class="editor-btn flex justify-content align-items" onclick="onSwitchLine()">Switch Line</a>
+                    <a class="editor-btn flex justify-content align-items" onclick="onSwitchLine()"><img class="button-image" src="design/icons/switch-line.png"></a>
                     <a class="editor-btn flex justify-content align-items" onclick="onMoveLine()"><img class="button-image" src="design/icons/up-and-down-opposite-double-arrows-side-by-side.png"></a>
                 </div>
 
@@ -48,8 +48,8 @@
 
 
 
-        <section class="gallery max-width">
-            <div class="search-bar"></div>
+        <section class="gallery main-container max-width">
+            <div class="search-bar main-container"></div>
             <div class="filter-words "></div>
             <div class="img-container gallery-grid">
                 <div onclick="onLoadImage(1)" class="image image1 "></div>
@@ -76,7 +76,7 @@
             </div>
         </section>
 
-        <section class="profile "></section>
+        <section class="profile"></section>
 
     </main>
 
