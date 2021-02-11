@@ -50,6 +50,7 @@ function currLineRect() {
     let rectWidth = 498;
 
     gCtx.beginPath();
+    gCtx.setLineDash([6]);
     gCtx.lineWidth = 1;
     gCtx.strokeStyle = 'white';
     gCtx.rect(rectX, rectY, rectWidth, rectHeight);
@@ -67,6 +68,7 @@ function drawTextLines() {
 
 function drawText(text, align, color = 'white', size, font = 'impact', y = 50, x = gElCanvas.width * 0.25) {
     gCtx.lineWidth = 1;
+    gCtx.setLineDash([0]);
     gCtx.strokeStyle = 'black';
     gCtx.fillStyle = color;
     gCtx.font = `${size}px ${font}`;
@@ -201,4 +203,32 @@ function getImageById(id) {
 
 function getText() {
     return getMemeText();
+}
+
+function onSearchImg() {
+    let imgFilter = document.querySelector('[name="search-filter"]').value.toLowerCase();
+    setFilter(imgFilter);
+    renderImgs();
+}
+
+
+function renderImgs() {
+    let imgs = getImgs();
+
+    let imgsHTML = imgs.map(img => {
+        return ` <div onclick="onLoadImage(${img.id})"
+         class="image"
+          style="background: url(${img.url});
+        background-position: center center;
+         background-size: cover;">
+         </div>`;
+    }).join('');
+
+
+    let elImgContainer = document.querySelector('.img-container');
+    elImgContainer.innerHTML = imgsHTML;
+}
+
+function init() {
+    renderImgs();
 }

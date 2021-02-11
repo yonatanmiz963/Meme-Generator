@@ -101,7 +101,7 @@
     }
     
     .img-container {
-        height: 933px;
+        /* height: 1500px; */
         margin-top: 10px;
         margin-bottom: 10px;
     }
@@ -287,6 +287,13 @@
     
     .download-btn:hover {
         background-color: #73abff;
+    }
+    
+    .search-input {
+        width: 15rem;
+        height: 2.5rem;
+        outline: none;
+        font-size: 1rem;
     }
     /* MEDIA QUERIES */
     

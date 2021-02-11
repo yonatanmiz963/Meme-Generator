@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body>
+<body onload="init()">
     <header class="header">
         <nav class="nav-bar flex space-between main-container align-items">
 
@@ -65,18 +65,28 @@
 
 
         <section class="gallery main-container">
-            <div class="search-bar main-container"></div>
+
+            <div class="search-bar main-container">
+                <input onchange="onSearchImg()" class="search-input" placeholder="Search" list="imgs" id="img" name="search-filter">
+                <datalist id="imgs">
+                  <option value="Happy">
+                  <option value="Funny">
+                  <option value="Politics">
+                  <option value="Sleep">
+                  <option value="Dogs">
+                  <option value="Baby">
+                  <option value="Angry">
+                  <option value="Movies">
+                  <option value="Love">
+                  <option value="Sport">
+                  <option value="Famous">
+                  <option value="Serious">
+                </datalist>
+                <!-- <input type="submit"> -->
+            </div>
             <div class="filter-words "></div>
             <div class="img-container gallery-grid">
-                <div onclick="onLoadImage(1)" class="image image1 "></div>
-                <div onclick="onLoadImage(2)" class="image image2 "></div>
-                <div onclick="onLoadImage(3)" class="image image2 "></div>
-                <div onclick="onLoadImage(1)" class="image image1 "></div>
-                <div onclick="onLoadImage(2)" class="image image2 "></div>
-                <div onclick="onLoadImage(3)" class="image image2 "></div>
-                <div onclick="onLoadImage(1)" class="image image1 "></div>
-                <div onclick="onLoadImage(2)" class="image image2 "></div>
-                <div onclick="onLoadImage(3)" class="image image2 "></div>
+
             </div>
         </section>
 
