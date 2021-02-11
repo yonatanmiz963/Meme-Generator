@@ -89,7 +89,7 @@ function filterImgs() {
 
     let filteredImgs = gImgs.filter(img => {
         return img.keywords.find(keyWord => {
-            return keyWord === gCurrFilter;
+            return keyWord.includes(gCurrFilter);
         });
     });
 
