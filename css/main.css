@@ -58,6 +58,10 @@
         padding-right: 5px;
         padding-left: 5px;
     }
+    
+    .flex.direction-reversed {
+        flex-direction: row-reverse;
+    }
     /* list helpers */
     
     .clean-list {
@@ -295,6 +299,19 @@
         outline: none;
         font-size: 1rem;
     }
+    
+    .search-bar {
+        padding-top: 10px;
+    }
+    
+    .filter-word {
+        transition: transform .3s;
+    }
+    
+    .filter-word:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
     /* MEDIA QUERIES */
     
     @media(max-width:1040px) {
@@ -343,6 +360,9 @@
         .gallery-grid {
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             grid-auto-rows: 200px;
+        }
+        .search-bar {
+            flex-direction: column;
         }
     }
     

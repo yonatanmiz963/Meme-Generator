@@ -66,7 +66,10 @@
 
         <section class="gallery main-container">
 
-            <div class="search-bar main-container">
+            <div class="search-bar main-container flex ">
+
+
+
                 <input onchange="onSearchImg()" class="search-input" placeholder="Search" list="imgs" id="img" name="search-filter">
                 <datalist id="imgs">
                   <option value="Happy">
@@ -82,12 +85,19 @@
                   <option value="Famous">
                   <option value="Serious">
                 </datalist>
-                <!-- <input type="submit"> -->
+
+                <div class="filter-words"></div>
+
             </div>
-            <div class="filter-words "></div>
+
+
             <div class="img-container gallery-grid">
 
             </div>
+
+
+
+
         </section>
 
 
@@ -136,8 +146,9 @@
 
 
 
-    <script src="js/meme-service.js "></script>
-    <script src="js/main.js "></script>
+    <script src="js/utill.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

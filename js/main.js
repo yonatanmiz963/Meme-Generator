@@ -231,4 +231,40 @@ function renderImgs() {
 
 function init() {
     renderImgs();
+    renderFilters();
+}
+
+
+function renderFilters() {
+    let keywords = getKeywords();
+    let filterWords = [];
+
+    for (const keyword in keywords) {
+        if (Object.hasOwnProperty.call(keywords, keyword)) {
+            filterWords.push(keyword);
+        }
+    }
+
+    let filtersHTML = filterWords.map(word => {
+
+        return `<h3 onclick="onChooseFilter(this)"
+        data-filter="${word}"
+         class="filter-word"
+          style="font-size: ${keywords[word] * 9}px;
+           float: left;
+            margin: 0;
+             padding: 5px">${capitalizeFirstLetter(word)}</h3>`
+
+    }).join('');
+
+    let elFiltersContainer = document.querySelector('.filter-words');
+    elFiltersContainer.innerHTML = filtersHTML;
+}
+
+function onChooseFilter(elFilter) {
+    let filter = elFilter.getAttribute('data-filter');
+    setFilterFreq(filter);
+    setFilter(filter);
+    renderFilters();
+    renderImgs();
 }

@@ -3,19 +3,20 @@
 var gMeme;
 
 var gCurrFilter = '';
+
 var gKeywords = {
-    'happy': 12,
-    'funny': 1,
-    'politics': 1,
-    'sleep': 1,
-    'dogs': 1,
-    'baby': 1,
-    'angry': 1,
-    'movies': 1,
-    'love': 1,
-    'sport': 1,
-    'famous': 1,
-    'serious': 1,
+    'happy': 10,
+    'funny': 6,
+    'politics': 8,
+    'sleep': 10,
+    'dogs': 5,
+    'baby': 4,
+    'angry': 3,
+    'movies': 5,
+    'love': 10,
+    'sport': 5,
+    'famous': 10,
+    'serious': 9,
 }
 
 
@@ -97,4 +98,19 @@ function filterImgs() {
 
 function setFilter(filter) {
     gCurrFilter = filter;
+}
+
+function getKeywords() {
+    return gKeywords;
+}
+
+
+function setFilterFreq(filter) {
+    if (gKeywords[filter] < 10) gKeywords[filter]++;
+
+    for (const word in gKeywords) {
+        if (Object.hasOwnProperty.call(gKeywords, word)) {
+            if (word !== filter && gKeywords[word] >= 3) gKeywords[word]--;
+        }
+    }
 }
