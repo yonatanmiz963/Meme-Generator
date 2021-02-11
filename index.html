@@ -35,12 +35,23 @@
                 <div class="text-editor">
                     <input onchange="onChangeText()" class="text-input" name="line-text" value="" placeholder="  Add text">
                     <a class="editor-btn flex justify-content align-items" onclick="onSwitchLine()"><img class="button-image" src="design/icons/switch-line.png"></a>
-                    <a class="editor-btn flex justify-content align-items" onclick="onMoveLine()"><img class="button-image" src="design/icons/up-and-down-opposite-double-arrows-side-by-side.png"></a>
+
                 </div>
 
                 <div class="advanced-edit">
                     <a class="editor-btn flex justify-content align-items" onclick="onChangeFontSize('+')"><img class="button-image" src="design/icons/increase font - icon.png"></a>
                     <a class="editor-btn flex justify-content align-items" onclick="onChangeFontSize('-')"><img class="button-image" src="design/icons/decrease font - icon.png"></a>
+                    <a class="editor-btn flex justify-content align-items" onclick="onMoveLine()"><img class="button-image" src="design/icons/up-and-down-opposite-double-arrows-side-by-side.png"></a>
+                    <a class="editor-btn flex justify-content align-items" onclick="onMoveAside()"><img class="button-image" src="design/icons/double-arrow-icon-6.png"></a>
+
+                    <select class="font-input" onchange="onChangeFont()" value="impact" name="font">
+                      <option value="impact">Impact</option>
+                      <option value="montserat">Montserat</option>
+                      <option value="arial">Arial</option>
+                      <option value="comic">Comic</option>
+                      <option value="cursive">Cursive</option>
+                      <option value="monospace">Monospace</option>
+                </select>
                 </div>
 
             </div>

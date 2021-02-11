@@ -28,14 +28,13 @@ function setMeme(id) {
         selectedImgId: id,
         selectedLineIdx: 0,
         lines: [
-            { txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red', height: 50 },
-            { txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red', height: 50 },
-            { txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red', height: 50 }
+            { txt: 'START HERE', size: 50, align: 'start', color: 'red', y: 50, x: 125 },
+            { txt: 'I never eat Falafel', size: 50, align: 'start', color: 'red', y: 50, x: 125 },
+            { txt: 'Lamborgini', size: 50, align: 'start', color: 'red', y: 50, x: 125 }
         ]
     };
 
     gMeme = meme;
-    // console.log(gMeme);
 }
 
 function getMemeText() {
@@ -44,7 +43,6 @@ function getMemeText() {
 
 function changeText(newText, currLine) {
     gMeme.lines[currLine].txt = newText;
-    console.log(gMeme.lines);
 }
 
 function getMeme() {

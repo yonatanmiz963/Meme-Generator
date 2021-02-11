@@ -17,6 +17,16 @@
         src: url(../fonts/impact/impact.ttf);
         font-family: impact;
     }
+    
+    @font-face {
+        src: url(../fonts/comic-sans/COMIC.TTF);
+        font-family: comic;
+    }
+    
+    @font-face {
+        src: url(../fonts/impact/impact.ttf);
+        font-family: impact;
+    }
     /* HELPERS */
     
     .flex {
@@ -143,10 +153,9 @@
     }
     
     .text-input {
-        font-size: 1.25rem;
-        font-weight: bold;
+        font-size: 1.5rem;
         grid-column: 1 / 6;
-        height: 2rem;
+        height: 3rem;
         border-radius: 5px;
         outline: none;
     }
@@ -261,6 +270,12 @@
     
     .name {
         font-size: 1.25rem;
+    }
+    
+    .font-input {
+        grid-area: 2 / 1 / 2 / 3;
+        font-size: 1.25rem;
+        height: 2.5rem;
     }
     /* MEDIA QUERIES */
     
