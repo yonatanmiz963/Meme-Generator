@@ -40,8 +40,9 @@ function drawMeme(img) {
 }
 
 function currLineRect() {
-    if (gCurrLine !== 0 && (!gCurrLine)) return;
     let meme = getCurrMeme();
+    if (meme.lines.length === 0) return;
+    if (gCurrLine !== 0 && (!gCurrLine)) return;
 
     let rectX = 1;
     let rectY = meme.lines[gCurrLine].y - meme.lines[gCurrLine].size;
@@ -64,8 +65,8 @@ function drawTextLines() {
 }
 
 
-function drawText(text, align, color, size, font, y = 50, x = gElCanvas.width * 0.25) {
-    gCtx.lineWidth = 2;
+function drawText(text, align, color = 'white', size, font = 'impact', y = 50, x = gElCanvas.width * 0.25) {
+    gCtx.lineWidth = 1;
     gCtx.strokeStyle = 'black';
     gCtx.fillStyle = color;
     gCtx.font = `${size}px ${font}`;
@@ -94,6 +95,7 @@ function onChangeText() {
 
     let newText = document.querySelector('[name="line-text"]').value;
     changeText(newText, gCurrLine);
+    document.querySelector('[name="line-text"]').value = '';
     clearCanvas();
     drawMeme(gImg);
 }
@@ -136,6 +138,7 @@ function onMoveAside() {
 }
 
 function onChangeFont() {
+    if (gCurrLine !== 0 && (!gCurrLine)) return;
     let newFont = document.querySelector('[name="font"]').value;
     let meme = getCurrMeme();
     meme.lines[gCurrLine].font = newFont;
@@ -143,6 +146,46 @@ function onChangeFont() {
     clearCanvas();
     drawMeme(gImg);
 }
+
+function onSetFontColor() {
+    if (gCurrLine !== 0 && (!gCurrLine)) return;
+    let newColor = document.querySelector('[name="font-color"]').value;
+    let meme = getCurrMeme();
+    meme.lines[gCurrLine].color = newColor;
+    updateMeme(meme);
+    clearCanvas();
+    drawMeme(gImg);
+}
+
+function onAddLine() {
+    let newLine = { txt: 'New Line', size: 50, align: 'start', color: 'white', y: 50, x: 125 };
+    let meme = getCurrMeme();
+    meme.lines.push(newLine);
+    gCurrLine = meme.lines.length - 1;
+    updateMeme(meme);
+    clearCanvas();
+    drawMeme(gImg);
+}
+
+
+function onDeleteLine() {
+    if (gCurrLine !== 0 && (!gCurrLine)) return;
+    let meme = getCurrMeme();
+    meme.lines.splice(gCurrLine, 1);
+    gCurrLine = 0;
+    updateMeme(meme);
+    clearCanvas();
+    drawMeme(gImg);
+}
+
+
+
+function downloadImg(elLink) {
+    var imgContent = gElCanvas.toDataURL('image/jpeg');
+    elLink.href = imgContent;
+}
+
+
 
 function getCurrMeme() {
     return getMeme();

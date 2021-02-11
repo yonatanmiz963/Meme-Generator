@@ -17,16 +17,6 @@
         src: url(../fonts/impact/impact.ttf);
         font-family: impact;
     }
-    
-    @font-face {
-        src: url(../fonts/comic-sans/COMIC.TTF);
-        font-family: comic;
-    }
-    
-    @font-face {
-        src: url(../fonts/impact/impact.ttf);
-        font-family: impact;
-    }
     /* HELPERS */
     
     .flex {
@@ -158,6 +148,7 @@
         height: 3rem;
         border-radius: 5px;
         outline: none;
+        border: none;
     }
     
     .normal-edit {
@@ -252,7 +243,7 @@
     
     .footer {
         bottom: 0;
-        background: #408af8;
+        background-color: #408af8;
     }
     
     .footer-title {
@@ -276,6 +267,26 @@
         grid-area: 2 / 1 / 2 / 3;
         font-size: 1.25rem;
         height: 2.5rem;
+    }
+    
+    .font-color {
+        grid-area: 2 / 3 / 3 / 3;
+        width: 100%;
+        height: 2.5rem;
+    }
+    
+    .download-btn {
+        font-size: 1.5rem;
+        width: 9.375rem;
+        padding: 10px;
+        background-color: #408af8;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+    }
+    
+    .download-btn:hover {
+        background-color: #73abff;
     }
     /* MEDIA QUERIES */
     
