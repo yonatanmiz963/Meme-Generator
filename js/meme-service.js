@@ -54,9 +54,9 @@ function setMeme(id) {
         selectedImgId: id,
         selectedLineIdx: 0,
         lines: [
-            { txt: 'START HERE', size: 50, align: 'start', color: 'white', y: 50, x: 125 },
-            { txt: 'I never eat Falafel', size: 50, align: 'start', color: 'white', y: 50, x: 125 },
-            { txt: 'Lamborgini', size: 50, align: 'start', color: 'white', y: 50, x: 125 }
+            { txt: 'START HERE', size: 50, align: 'start', color: 'white', y: 50, x: 125, isDragging: false, rectWidth: 498, rectHeight: 60, rectX: 1, rectY: 0 },
+            { txt: 'I never eat Falafel', size: 50, align: 'start', color: 'white', y: 150, x: 125, isDragging: false, rectWidth: 498, rectHeight: 60, rectX: 1, rectY: 100 },
+            { txt: 'Lamborgini', size: 50, align: 'start', color: 'white', y: 350, x: 125, isDragging: false, rectWidth: 498, rectHeight: 60, rectX: 1, rectY: 300 }
         ]
     };
 

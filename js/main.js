@@ -5,11 +5,16 @@ var gElCanvas;
 var gCtx;
 var gImg;
 var gCurrLine = 0;
+var gStartPos;
+
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
+
 
 function initCanvas() {
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
     resizeCanvas();
+    addListeners();
 }
 
 
@@ -42,12 +47,18 @@ function drawMeme(img) {
 function currLineRect() {
     let meme = getCurrMeme();
     if (meme.lines.length === 0) return;
-    if (gCurrLine !== 0 && (!gCurrLine)) return;
+    if (gCurrLine === null) return;
 
     let rectX = 1;
     let rectY = meme.lines[gCurrLine].y - meme.lines[gCurrLine].size;
     let rectHeight = meme.lines[gCurrLine].size + 10;
     let rectWidth = 498;
+
+    meme.lines[gCurrLine].rectX = rectX;
+    meme.lines[gCurrLine].rectY = rectY;
+    meme.lines[gCurrLine].rectWidth = rectWidth;
+    meme.lines[gCurrLine].rectHeight = rectHeight;
+    updateMeme(meme);
 
     gCtx.beginPath();
     gCtx.setLineDash([6]);
@@ -80,7 +91,8 @@ function drawText(text, align, color = 'white', size, font = 'impact', y = 50, x
 
 function onSwitchLine() {
     if (gCurrLine || gCurrLine === 0) gCurrLine++;
-    if (!gCurrLine && gCurrLine !== 0) gCurrLine = 0;
+    if (gCurrLine === null) gCurrLine = 0;
+
     let meme = getCurrMeme();
     if (gCurrLine >= meme.lines.length) {
         gCurrLine = null;
@@ -160,7 +172,7 @@ function onSetFontColor() {
 }
 
 function onAddLine() {
-    let newLine = { txt: 'New Line', size: 50, align: 'start', color: 'white', y: 50, x: 125 };
+    let newLine = { txt: 'New Line', size: 50, align: 'start', color: 'white', y: 50, x: 125, isDragging: false, rectWidth: 0, rectHeight: 0, rectX: 0, rectY: 0 };
     let meme = getCurrMeme();
     meme.lines.push(newLine);
     gCurrLine = meme.lines.length - 1;
@@ -267,4 +279,110 @@ function onChooseFilter(elFilter) {
     setFilter(filter);
     renderFilters();
     renderImgs();
+}
+
+
+function isRectClicked(clickedPos) {
+    let meme = getMeme();
+    var selectedRectIdx = meme.lines.findIndex(line => {
+        return (clickedPos.x >= line.rectX) && (clickedPos.x <= line.rectWidth + line.rectX) && (clickedPos.y >= line.rectY) && (clickedPos.y <= line.rectY + line.rectHeight);
+    });
+
+    if (selectedRectIdx === -1) {
+        clearCanvas();
+        drawMeme(gImg);
+        gCurrLine = null;
+        return false;
+
+    } else {
+
+        gCurrLine = selectedRectIdx;
+        return true;
+    }
+}
+
+
+
+function getEvPos(ev) {
+    var pos = {
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+
+    if (gTouchEvs.includes(ev.type)) {
+        ev.preventDefault();
+        ev = ev.changedTouches[0];
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
+        }
+    }
+    return pos;
+}
+
+function onUp() {
+    if (gCurrLine === null) return;
+    let meme = getMeme();
+
+    meme.lines[gCurrLine].isDragging = false;
+    document.body.style.cursor = 'grab';
+}
+
+
+function onMove(ev) {
+    if (gCurrLine === null) return;
+
+    let meme = getMeme();
+    if (meme.lines[gCurrLine].isDragging) {
+        const pos = getEvPos(ev)
+        const dx = pos.x - gStartPos.x
+        const dy = pos.y - gStartPos.y
+
+        meme.lines[gCurrLine].rectX += dx;
+        meme.lines[gCurrLine].rectY += dy;
+        meme.lines[gCurrLine].x += dx;
+        meme.lines[gCurrLine].y += dy;
+
+        gStartPos = pos;
+        updateMeme(meme);
+        clearCanvas();
+        drawMeme(gImg);
+    }
+}
+
+function onDown(ev) {
+    let meme = getMeme();
+    const pos = getEvPos(ev);
+
+    if (!isRectClicked(pos)) return
+    meme.lines[gCurrLine].isDragging = true;
+    gStartPos = pos;
+    document.body.style.cursor = 'grabbing';
+
+}
+
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousemove', onMove)
+
+    gElCanvas.addEventListener('mousedown', onDown)
+
+    gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchmove', onMove)
+
+    gElCanvas.addEventListener('touchstart', onDown)
+
+    gElCanvas.addEventListener('touchend', onUp)
+}
+
+
+function addListeners() {
+    addMouseListeners()
+    addTouchListeners()
+    window.addEventListener('resize', () => {
+        resizeCanvas()
+        drawMeme(gImg);
+    });
 }
