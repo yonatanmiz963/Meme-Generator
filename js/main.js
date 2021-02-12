@@ -53,8 +53,6 @@ function onLoadImage(id) {
     let image = getImageById(id);
     var img = new Image();
     img.onload = () => {
-        console.log('original width', img.width);
-        console.log('original height', img.height);
         resizeCanvas(img.width, img.height);
         drawMeme(img);
     }
@@ -381,9 +379,6 @@ function getEvPos(ev) {
         x: ev.offsetX,
         y: ev.offsetY
     }
-
-    console.log('pos:', pos)
-
 
     if (gTouchEvs.includes(ev.type)) {
         ev.preventDefault();

@@ -19,6 +19,16 @@
         src: url(../fonts/impact/impact.ttf);
         font-family: impact;
     }
+    
+    @font-face {
+        src: url(../fonts/ComicNeue-Regular/ComicNeue-Regular.ttf);
+        font-family: comic-regular;
+    }
+    
+    @font-face {
+        src: url(../fonts/ComicNeue-Bold/ComicNeue-Bold.ttf);
+        font-family: comic-bold;
+    }
     /* HELPERS */
     
     .flex {
@@ -115,22 +125,19 @@
         /* height: 1500px; */
         margin-top: 10px;
         margin-bottom: 10px;
+        padding: 20px;
+    }
+    
+    .image {
+        transition: all .4s;
+        margin: 15px;
     }
     
     .image:hover {
         cursor: pointer;
-    }
-    
-    .image1 {
-        background: url("../meme-imgs/1.jpg");
-        background-position: center center;
-        background-size: cover;
-    }
-    
-    .image2 {
-        background: url("../meme-imgs/2.jpg");
-        background-position: center center;
-        background-size: cover;
+        transform: scale(1.05);
+        -webkit-box-shadow: 0px 2px 17px 2px #000000;
+        box-shadow: 0px 2px 17px 2px #000000;
     }
     
     .gallery {
@@ -304,6 +311,9 @@
         height: 2.5rem;
         outline: none;
         font-size: 1rem;
+        border: none;
+        border-radius: .625rem;
+        margin-inline-end: 5px;
     }
     
     .search-bar {
@@ -315,7 +325,7 @@
     }
     
     .filter-word:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
         cursor: pointer;
     }
     
@@ -329,6 +339,22 @@
     
     .memes-container {
         min-height: 700px;
+    }
+    
+    .filter-words {
+        display: flex;
+        overflow-y: scroll;
+        align-items: center;
+    }
+    
+    .filter-words>* {
+        padding: 20px;
+    }
+    
+    .meme {
+        height: 200px;
+        width: 200px;
+        margin: 10px;
     }
     /* MEDIA QUERIES */
     
