@@ -10,6 +10,14 @@ var gStartPos;
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 
 
+
+function init() {
+    renderImgs();
+    renderFilters();
+    onShareListener()
+}
+
+
 function initCanvas() {
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
@@ -317,10 +325,6 @@ function renderImgs() {
     elImgContainer.innerHTML = imgsHTML;
 }
 
-function init() {
-    renderImgs();
-    renderFilters();
-}
 
 
 function renderFilters() {
@@ -512,4 +516,26 @@ function loadImageFromInput(ev, onImageReady) {
     }
     reader.readAsDataURL(ev.target.files[0])
 
+}
+
+
+function onShareListener() {
+    let shareButton = document.querySelector('.share');
+    shareButton.addEventListener('click', event => {
+        let meme = getCurrMeme();
+        meme.url = gElCanvas.toDataURL('image/jpeg');
+        console.log(meme);
+
+        if (navigator.share) {
+            navigator.share({
+                    title: 'Your Meme',
+                    url: meme.url
+                }).then(() => {
+                    console.log('Thanks for sharing!');
+                })
+                .catch(console.error);
+        } else {
+            // fallback
+        }
+    });
 }
