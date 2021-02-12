@@ -14,7 +14,6 @@ const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 function init() {
     renderImgs();
     renderFilters();
-    onShareListener()
 }
 
 
@@ -516,27 +515,4 @@ function loadImageFromInput(ev, onImageReady) {
     }
     reader.readAsDataURL(ev.target.files[0])
 
-}
-
-
-function onShareListener() {
-    let shareButton = document.querySelector('.share');
-    let meme = getCurrMeme();
-    meme.url = gElCanvas.toDataURL('image/jpeg');
-    console.log(meme);
-
-    const shareData = {
-        title: 'Your Meme',
-        text: 'Learn web development on MDN!',
-        url: meme.url
-    }
-
-    shareButton.addEventListener('click', async() => {
-        try {
-            await navigator.share(shareData)
-                //   resultPara.textContent = 'MDN shared successfully'
-        } catch (err) {
-            //   resultPara.textContent = 'Error: ' + err;
-        }
-    });
 }
