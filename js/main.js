@@ -521,21 +521,22 @@ function loadImageFromInput(ev, onImageReady) {
 
 function onShareListener() {
     let shareButton = document.querySelector('.share');
-    shareButton.addEventListener('click', event => {
-        let meme = getCurrMeme();
-        meme.url = gElCanvas.toDataURL('image/jpeg');
-        console.log(meme);
+    let meme = getCurrMeme();
+    meme.url = gElCanvas.toDataURL('image/jpeg');
+    console.log(meme);
 
-        if (navigator.share) {
-            navigator.share({
-                    title: 'Your Meme',
-                    url: meme.url
-                }).then(() => {
-                    console.log('Thanks for sharing!');
-                })
-                .catch(console.error);
-        } else {
-            // fallback
+    const shareData = {
+        title: 'Your Meme',
+        text: 'Learn web development on MDN!',
+        url: meme.url
+    }
+
+    shareButton.addEventListener('click', async() => {
+        try {
+            await navigator.share(shareData)
+                //   resultPara.textContent = 'MDN shared successfully'
+        } catch (err) {
+            //   resultPara.textContent = 'Error: ' + err;
         }
     });
 }
