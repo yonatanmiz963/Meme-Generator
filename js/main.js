@@ -34,18 +34,16 @@ function resizeCanvas() {
 
 
 function onLoadImage(id) {
+    getCurrId();
     let elGallery = document.querySelector('.gallery');
-    elGallery.classList.toggle('hide');
+    if (!elGallery.classList.contains('hide')) elGallery.classList.toggle('hide');
 
     let elProfile = document.querySelector('.profile');
-    elProfile.classList.toggle('hide');
+    if (!elProfile.classList.contains('hide')) elProfile.classList.toggle('hide');
 
 
     let elEditor = document.querySelector('.editor');
     elEditor.classList.toggle('hide');
-
-
-
 
     setMeme(id);
     initCanvas();
@@ -223,6 +221,61 @@ function downloadImg(elLink) {
 }
 
 
+function onSaveMeme() {
+    let memeURL = gElCanvas.toDataURL('image/jpeg');
+    console.log('memeURL:', memeURL)
+    saveMemes(memeURL);
+}
+
+
+function onOpenMemes() {
+    let memes = getMemes();
+    if (memes) {
+        let memesHTML = memes.map(meme => {
+            return `<img class="meme"
+            src="${meme.url}"
+            onclick="onLoadMeme(${meme.id})">`
+        }).join('');
+
+        let elMemesContainer = document.querySelector('.memes-container');
+        elMemesContainer.innerHTML = memesHTML;
+    }
+
+    let elGallery = document.querySelector('.gallery');
+    if (!elGallery.classList.contains('hide')) elGallery.classList.toggle('hide');
+
+    let elProfile = document.querySelector('.profile');
+    if (!elProfile.classList.contains('hide')) elProfile.classList.toggle('hide');
+
+    let elEditor = document.querySelector('.editor');
+    if (!elEditor.classList.contains('hide')) elEditor.classList.toggle('hide');
+
+    let elMemesSection = document.querySelector('.my-memes');
+    elMemesSection.classList.toggle('hide');
+}
+
+function onLoadMeme(id) {
+    let meme = getMemeById(id);
+    updateMeme(meme);
+    let elEditor = document.querySelector('.editor');
+    if (elEditor.classList.contains('hide')) elEditor.classList.toggle('hide');
+    initCanvas();
+
+    var img = new Image();
+    img.onload = () => {
+        resizeCanvas();
+        drawMeme(img);
+    }
+    gImg = img;
+    gImg.src = meme.url;
+
+    let elMemesSection = document.querySelector('.my-memes');
+    elMemesSection.classList.toggle('hide');
+}
+
+function deleteMeme() {
+
+}
 
 function getCurrMeme() {
     return getMeme();
@@ -418,10 +471,13 @@ function onOpenGallery() {
     elGallery.classList.toggle('hide');
 
     let elEditor = document.querySelector('.editor');
-    elEditor.classList.toggle('hide');
+    if (!elEditor.classList.contains('hide')) elEditor.classList.toggle('hide');
 
     let elProfile = document.querySelector('.profile');
     elProfile.classList.toggle('hide');
+
+    let elMemes = document.querySelector('.my-memes');
+    if (!elMemes.classList.contains('hide')) elMemes.classList.toggle('hide');
 }
 
 
@@ -441,7 +497,7 @@ function onAddEmoji(elEmoji) {
 
 // The next 2 functions handle IMAGE UPLOADING to img tag from file system: 
 function onImgInput(ev) {
-    loadImageFromInput(ev, drawMeme)
+    loadImageFromInput(ev, drawMeme);
 }
 
 function loadImageFromInput(ev, onImageReady) {

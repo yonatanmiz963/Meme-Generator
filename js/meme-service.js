@@ -1,8 +1,10 @@
 'use strict';
 
 var gMeme;
-
 var gCurrFilter = '';
+const KEY = 'memes';
+const ID = 'currId';
+var gMemeId = 0;
 
 var gKeywords = {
     'happy': 10,
@@ -51,6 +53,8 @@ function getImage(id) {
 
 function setMeme(id) {
     let meme = {
+        id: gMemeId++,
+        url: null,
         selectedImgId: id,
         selectedLineIdx: 0,
         lines: [
@@ -113,4 +117,41 @@ function setFilterFreq(filter) {
             if (word !== filter && gKeywords[word] >= 3) gKeywords[word]--;
         }
     }
+}
+
+function saveMemes(url) {
+    gMeme.url = url;
+    console.log(gMeme);
+    let memes = getMemes();
+    if (memes === null) {
+        memes = [];
+        memes.push(gMeme);
+    } else {
+        memes.push(gMeme);
+    }
+
+    saveToStorage(KEY, memes);
+    saveToStorage(ID, gMemeId);
+
+}
+
+function getMemes() {
+    return loadFromStorage(KEY);
+}
+
+function getCurrId() {
+    let currId = loadFromStorage(ID);
+    if (!currId) return;
+    gMemeId = currId;
+}
+
+function getMemeById(id) {
+    let memes = getMemes();
+    console.log(memes);
+    let meme = memes.find(meme => {
+        return meme.id === id
+    });
+    console.log(meme);
+
+    return meme;
 }

@@ -18,7 +18,7 @@
 
             <ul class="menu clean-list flex">
                 <li class="flex justify-content align-items"><a onclick="onOpenGallery()" class="nav-btn flex justify-content align-items">Gallery</a></li>
-                <li class="flex"><a class="nav-btn flex justify-content align-items">Memes</a></li>
+                <li class="flex"><a class="nav-btn flex justify-content align-items" onclick="onOpenMemes()">Memes</a></li>
             </ul>
 
         </nav>
@@ -120,6 +120,7 @@
                         <input name="img" id="imgData" type="hidden" />
                         <button class="btn" type="submit">Publish</button>
                         <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
+                        <a class="btn-save" onclick="onSaveMeme()">Save Meme</a>
                         <div class="share-container"></div>
                     </form>
 
@@ -195,6 +196,20 @@
 
         </section>
 
+
+        <section class="my-memes hide">
+            <div class="memes-container">
+
+
+
+
+
+
+
+
+            </div>
+        </section>
+
     </main>
 
 
@@ -209,6 +224,7 @@
 
 
     <script src="js/utill.js"></script>
+    <script src="js/storage-service.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/upload-service.js"></script>
     <script src="js/main.js"></script>
