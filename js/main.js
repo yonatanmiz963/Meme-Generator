@@ -22,19 +22,42 @@ function resizeCanvas() {
     var elContainer = document.querySelector('.canvas-container');
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetWidth;
-    // console.log(gElCanvas);
-    // gElCanvas.height = elContainer.offsetHeight;
+
+    // gElCanvas.height = (imgHeight * 500) / imgWidth;
+    // gElCanvas.width = (imgHeight * 500) / imgWidth;
+    // console.log('gElCanvas.height:', gElCanvas.height)
+    // console.log('gElCanvas.width:', gElCanvas.width)
+
+    // gElCanvas.height = imgHeight;
+    // gElCanvas.width = imgWidth;
 }
 
 
 function onLoadImage(id) {
+    let elGallery = document.querySelector('.gallery');
+    elGallery.classList.toggle('hide');
+
+    let elProfile = document.querySelector('.profile');
+    elProfile.classList.toggle('hide');
+
+
+    let elEditor = document.querySelector('.editor');
+    elEditor.classList.toggle('hide');
+
+
+
+
     setMeme(id);
     initCanvas();
     let image = getImageById(id);
     var img = new Image();
-    img.onload = () => (drawMeme(img));
+    img.onload = () => {
+        resizeCanvas(img.width, img.height);
+        drawMeme(img);
+    }
     img.src = image.url;
     gImg = img;
+
 }
 
 
@@ -385,4 +408,31 @@ function addListeners() {
         resizeCanvas()
         drawMeme(gImg);
     });
+}
+
+function onOpenGallery() {
+    let elGallery = document.querySelector('.gallery');
+
+    if (!elGallery.classList.contains('hide')) return;
+
+    elGallery.classList.toggle('hide');
+
+    let elEditor = document.querySelector('.editor');
+    elEditor.classList.toggle('hide');
+
+    let elProfile = document.querySelector('.profile');
+    elProfile.classList.toggle('hide');
+}
+
+
+
+function onAddEmoji(elEmoji) {
+    let emoji = elEmoji.innerHTML;
+    let newEmoji = { txt: emoji, size: 50, align: 'start', color: 'white', y: 50, x: 125, isDragging: false, rectWidth: 0, rectHeight: 0, rectX: 0, rectY: 0 };
+    let meme = getCurrMeme();
+    meme.lines.push(newEmoji);
+    gCurrLine = meme.lines.length - 1;
+    updateMeme(meme);
+    clearCanvas();
+    drawMeme(gImg);
 }

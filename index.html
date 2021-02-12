@@ -10,14 +10,15 @@
 </head>
 
 <body onload="init()">
+
     <header class="header">
         <nav class="nav-bar flex space-between main-container align-items">
 
             <div class="logo"><img src="design/logo/LOGO.png"></div>
 
             <ul class="menu clean-list flex">
-                <li class="flex justify-content align-items"><a class="nav-btn flex justify-content align-items">Gallery</a></li>
-                <li class="flex"><a class="nav-btn flex justify-content align-items">About</a></li>
+                <li class="flex justify-content align-items"><a onclick="onOpenGallery()" class="nav-btn flex justify-content align-items">Gallery</a></li>
+                <li class="flex"><a class="nav-btn flex justify-content align-items">Memes</a></li>
             </ul>
 
         </nav>
@@ -25,9 +26,11 @@
 
     <main>
 
-        <section class="editor main-container flex space-between">
 
-            <div class="canvas-container align-self-center">
+
+        <section class="editor main-container flex space-between hide">
+
+            <div class="canvas-container">
                 <canvas id="my-canvas" width="500" height="500" style="outline:1px solid rgb(0, 0, 0)"></canvas>
             </div>
 
@@ -37,22 +40,72 @@
                     <a class="editor-btn flex justify-content align-items" onclick="onSwitchLine()"><img class="button-image" src="design/icons/switch-line.png"></a>
                     <a class="editor-btn flex justify-content align-items" onclick="onAddLine()"><img class="button-image" src="design/icons/add.png"></a>
                     <a class="editor-btn flex justify-content align-items" onclick="onDeleteLine()"><img class="button-image" src="design/icons/trash.png"></a>
+                    <a class="editor-btn flex justify-content align-items" onclick="onMoveLine()"><img class="button-image" src="design/icons/up-and-down-opposite-double-arrows-side-by-side.png"></a>
+                    <a class="editor-btn flex justify-content align-items" onclick="onMoveAside()"><img class="button-image" src="design/icons/double-arrow-icon-6.png"></a>
 
                 </div>
 
                 <div class="advanced-edit">
                     <a class="editor-btn flex justify-content align-items" onclick="onChangeFontSize('+')"><img class="button-image" src="design/icons/increase font - icon.png"></a>
                     <a class="editor-btn flex justify-content align-items" onclick="onChangeFontSize('-')"><img class="button-image" src="design/icons/decrease font - icon.png"></a>
-                    <a class="editor-btn flex justify-content align-items" onclick="onMoveLine()"><img class="button-image" src="design/icons/up-and-down-opposite-double-arrows-side-by-side.png"></a>
-                    <a class="editor-btn flex justify-content align-items" onclick="onMoveAside()"><img class="button-image" src="design/icons/double-arrow-icon-6.png"></a>
+                    <div class="emojis-container">
+                        <a onclick="onAddEmoji(this)">🙂</a>
+                        <a onclick="onAddEmoji(this)">💟 </a>
+                        <a onclick="onAddEmoji(this)">💘 </a>
+                        <a onclick="onAddEmoji(this)">🥾 </a>
+                        <a onclick="onAddEmoji(this)">🏇 </a>
+                        <a onclick="onAddEmoji(this)">🇮🇱 </a>
+                        <a onclick="onAddEmoji(this)">🔑 </a>
+                        <a onclick="onAddEmoji(this)">⌨ </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">🐨 </a>
+                        <a onclick="onAddEmoji(this)">🙂</a>
+                        <a onclick="onAddEmoji(this)">💟 </a>
+                        <a onclick="onAddEmoji(this)">💘 </a>
+                        <a onclick="onAddEmoji(this)">🥾 </a>
+                        <a onclick="onAddEmoji(this)">🏇 </a>
+                        <a onclick="onAddEmoji(this)">🇮🇱 </a>
+                        <a onclick="onAddEmoji(this)">🔑 </a>
+                        <a onclick="onAddEmoji(this)">⌨ </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">🐨 </a>
+                        <a onclick="onAddEmoji(this)">🙂</a>
+                        <a onclick="onAddEmoji(this)">💟 </a>
+                        <a onclick="onAddEmoji(this)">💘 </a>
+                        <a onclick="onAddEmoji(this)">🥾 </a>
+                        <a onclick="onAddEmoji(this)">🏇 </a>
+                        <a onclick="onAddEmoji(this)">🇮🇱 </a>
+                        <a onclick="onAddEmoji(this)">🔑 </a>
+                        <a onclick="onAddEmoji(this)">⌨ </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">🐨 </a>
+                        <a onclick="onAddEmoji(this)">🔑 </a>
+                        <a onclick="onAddEmoji(this)">⌨ </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">⌨ </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">🐨 </a>
+                        <a onclick="onAddEmoji(this)">🔑 </a>
+                        <a onclick="onAddEmoji(this)">⌨ </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">⌨ </a>
+                        <a onclick="onAddEmoji(this)">💏 </a>
+                        <a onclick="onAddEmoji(this)">🐨 </a>
+                    </div>
 
                     <select class="font-input" onchange="onChangeFont()" value="impact" name="font">
-                      <option value="impact">Impact</option>
-                      <option value="montserat">Montserat</option>
-                      <option value="arial">Arial</option>
-                      <option value="cursive">Cursive</option>
-                      <option value="monospace">Monospace</option>
-                </select>
+                          <option value="impact">Impact</option>
+                          <option value="montserat">Montserat</option>
+                          <option value="arial">Arial</option>
+                          <option value="cursive">Cursive</option>
+                          <option value="monospace">Monospace</option>
+                    </select>
 
                     <input class="font-color" onchange="onSetFontColor()" type="color" name="font-color" value="#ffffff">
 
@@ -64,11 +117,12 @@
 
 
 
+
+
+
         <section class="gallery main-container">
 
             <div class="search-bar main-container flex ">
-
-
 
                 <input onchange="onSearchImg()" class="search-input" placeholder="Search" list="imgs" id="img" name="search-filter">
                 <datalist id="imgs">
@@ -90,52 +144,45 @@
 
             </div>
 
-
-            <div class="img-container gallery-grid">
-
-            </div>
-
-
-
+            <div class="img-container gallery-grid"></div>
 
         </section>
 
 
+        <section class="profile main-container flex justify-content align-items">
+            <div class="profile-container flex justify-content align-items">
+
+                <div class=" photo-container flex justify-content align-items ">
+                    <img class="my-photo " src="my-img/myphoto.jpeg " alt=" ">
+                </div>
+                <div class="links-container flex justify-content align-items direction-column ">
+
+                    <h4 class="name">Yonatan Mizrahi</h4>
+                    <ul class="links-list clean-list flex ">
+                        <li class=" ">
+                            <a class="social-link flex justify-content align-items " href="https://github.com/yonatanmiz963 " target="_blank ">
+                                <img class="icon" src="design/icons/github-logo.png ">
+                            </a>
+                        </li>
+                        <li class="social-buttons ">
+                            <a class="social-link flex justify-content align-items " href="https://www.facebook.com/yonatan.mizrahi.14 " target="_blank ">
+                                <img class="icon facebook-icon " src="design/icons/facebook-logo.png ">
+                            </a>
+                        </li>
+                        <li class="social-buttons ">
+                            <a class="social-link flex justify-content align-items " href="https://www.linkedin.com/in/yonatan-mizrahi-817b78190/ " target="_blank ">
+                                <img class="icon linkedin-logo " src="design/icons/linkedin-logo.png ">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
         </section>
 
     </main>
 
-    <section class="profile main-container flex justify-content align-items">
-        <div class="profile-container flex justify-content align-items">
 
-            <div class=" photo-container flex justify-content align-items ">
-                <img class="my-photo " src="my-img/myphoto.jpeg " alt=" ">
-            </div>
-            <div class="links-container flex justify-content align-items direction-column ">
-
-                <h4 class="name">Yonatan Mizrahi</h4>
-                <ul class="links-list clean-list flex ">
-                    <li class=" ">
-                        <a class="social-link flex justify-content align-items " href="https://github.com/yonatanmiz963 " target="_blank ">
-                            <img class="icon" src="design/icons/github-logo.png ">
-                        </a>
-                    </li>
-                    <li class="social-buttons ">
-                        <a class="social-link flex justify-content align-items " href="https://www.facebook.com/yonatan.mizrahi.14 " target="_blank ">
-                            <img class="icon facebook-icon " src="design/icons/facebook-logo.png ">
-                        </a>
-                    </li>
-                    <li class="social-buttons ">
-                        <a class="social-link flex justify-content align-items " href="https://www.linkedin.com/in/yonatan-mizrahi-817b78190/ " target="_blank ">
-                            <img class="icon linkedin-logo " src="design/icons/linkedin-logo.png ">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </section>
 
     <footer class="footer flex justify-content align-items direction-column">
 
