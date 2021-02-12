@@ -148,7 +148,7 @@
     
     .normal-edit {
         flex-basis: 40%;
-        height: 800px;
+        /* height: 800px; */
     }
     
     .text-input {
@@ -280,7 +280,7 @@
     
     .font-color {
         grid-area: 1 / 3 / 3 / 3;
-        width: 100%;
+        width: 75%;
         height: 2.5rem;
     }
     
@@ -334,6 +334,9 @@
         .gallery-grid {
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             grid-auto-rows: 250px;
+        }
+        .normal-edit {
+            height: 650px;
         }
     }
     

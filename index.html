@@ -110,7 +110,22 @@
                     <input class="font-color" onchange="onSetFontColor()" type="color" name="font-color" value="#ffffff">
 
                 </div>
-                <a class="download-btn flex justify-content align-items" href="#" class="btn" onclick="downloadImg(this)" download="my-meme">Download</a>
+                <!-- <a class="download-btn flex justify-content align-items" href="#" class="btn" onclick="downloadImg(this)" download="my-meme">Download</a> -->
+
+
+                <div class="inputs">
+                    <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+
+                    <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                        <input name="img" id="imgData" type="hidden" />
+                        <button class="btn" type="submit">Publish</button>
+                        <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
+                        <div class="share-container"></div>
+                    </form>
+
+                </div>
+
+
 
             </div>
         </section>
@@ -195,6 +210,7 @@
 
     <script src="js/utill.js"></script>
     <script src="js/meme-service.js"></script>
+    <script src="js/upload-service.js"></script>
     <script src="js/main.js"></script>
 </body>
 

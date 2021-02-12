@@ -61,8 +61,8 @@ function onLoadImage(id) {
 }
 
 
-function drawMeme(img) {
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+function drawMeme(gImg) {
+    gCtx.drawImage(gImg, 0, 0, gElCanvas.width, gElCanvas.height);
     drawTextLines();
     currLineRect();
 }
@@ -435,4 +435,25 @@ function onAddEmoji(elEmoji) {
     updateMeme(meme);
     clearCanvas();
     drawMeme(gImg);
+}
+
+
+
+// The next 2 functions handle IMAGE UPLOADING to img tag from file system: 
+function onImgInput(ev) {
+    loadImageFromInput(ev, drawMeme)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    document.querySelector('.share-container').innerHTML = ''
+    var reader = new FileReader()
+
+    reader.onload = function(event) {
+        var img = new Image()
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result
+        gImg = img
+    }
+    reader.readAsDataURL(ev.target.files[0])
+
 }
