@@ -30,13 +30,10 @@ function resizeCanvas() {
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetWidth;
 
-    // gElCanvas.height = (imgHeight * 500) / imgWidth;
-    // gElCanvas.width = (imgHeight * 500) / imgWidth;
-    // console.log('gElCanvas.height:', gElCanvas.height)
-    // console.log('gElCanvas.width:', gElCanvas.width)
 
-    // gElCanvas.height = imgHeight;
-    // gElCanvas.width = imgWidth;
+    // DIFF ASPECT RATIOS
+    // gElCanvas.width = elContainer.offsetWidth;
+    // gElCanvas.height = (imgHeight * gElCanvas.width) / imgWidth;
 }
 
 
@@ -48,7 +45,6 @@ function onLoadImage(id) {
     let elProfile = document.querySelector('.profile');
     if (!elProfile.classList.contains('hide')) elProfile.classList.toggle('hide');
 
-
     let elEditor = document.querySelector('.editor');
     elEditor.classList.toggle('hide');
 
@@ -57,12 +53,13 @@ function onLoadImage(id) {
     let image = getImageById(id);
     var img = new Image();
     img.onload = () => {
+        console.log('original width', img.width);
+        console.log('original height', img.height);
         resizeCanvas(img.width, img.height);
         drawMeme(img);
     }
     img.src = image.url;
     gImg = img;
-
 }
 
 
@@ -77,10 +74,10 @@ function currLineRect() {
     if (meme.lines.length === 0) return;
     if (gCurrLine === null) return;
 
-    let rectX = 1;
+    let rectX = 0;
     let rectY = meme.lines[gCurrLine].y - meme.lines[gCurrLine].size;
     let rectHeight = meme.lines[gCurrLine].size + 10;
-    let rectWidth = 498;
+    let rectWidth = 500;
 
     meme.lines[gCurrLine].rectX = rectX;
     meme.lines[gCurrLine].rectY = rectY;
@@ -105,13 +102,13 @@ function drawTextLines() {
 }
 
 
-function drawText(text, align, color = 'white', size, font = 'impact', y = 50, x = gElCanvas.width * 0.25) {
+function drawText(text, align, color = 'white', size = 10, font = 'impact', y = 50, x) {
     gCtx.lineWidth = 1;
     gCtx.setLineDash([0]);
     gCtx.strokeStyle = 'black';
     gCtx.fillStyle = color;
     gCtx.font = `${size}px ${font}`;
-    gCtx.textAlign = align;
+    // gCtx.textAlign = align;
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);
 }
@@ -124,8 +121,6 @@ function onSwitchLine() {
     let meme = getCurrMeme();
     if (gCurrLine >= meme.lines.length) {
         gCurrLine = null;
-        clearCanvas();
-        drawMeme(gImg);
     }
 
     clearCanvas();
@@ -289,7 +284,6 @@ function getCurrMeme() {
 }
 
 
-
 function getImageById(id) {
     return getImage(id);
 }
@@ -387,6 +381,9 @@ function getEvPos(ev) {
         x: ev.offsetX,
         y: ev.offsetY
     }
+
+    console.log('pos:', pos)
+
 
     if (gTouchEvs.includes(ev.type)) {
         ev.preventDefault();
@@ -498,7 +495,7 @@ function onAddEmoji(elEmoji) {
 
 
 
-// The next 2 functions handle IMAGE UPLOADING to img tag from file system: 
+
 function onImgInput(ev) {
     loadImageFromInput(ev, drawMeme);
 }

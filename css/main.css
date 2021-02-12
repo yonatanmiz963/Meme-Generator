@@ -5,6 +5,7 @@
     body {
         margin: 0;
         background-color: lightgray;
+        /* position: relative; */
     }
     /* BASICS */
     
@@ -78,6 +79,7 @@
     
     main {
         background-color: rgb(231, 231, 231);
+        position: relative;
     }
     
     .logo img {
@@ -137,6 +139,7 @@
     
     .editor {
         background-color: #E3E3E3;
+        height: 700px;
     }
     
     .canvas-container {
@@ -198,10 +201,6 @@
         width: 50%;
     }
     
-    .profile {
-        margin-bottom: 100px;
-    }
-    
     .profile-container {
         width: 892px;
         height: 323px;
@@ -251,7 +250,9 @@
     }
     
     .footer {
-        bottom: 0;
+        /* bottom: 0;
+        position: absolute;
+        width: 100%; */
         background-color: #408af8;
     }
     
@@ -324,6 +325,10 @@
     
     .emojis-container a {
         font-size: 1.5rem;
+    }
+    
+    .memes-container {
+        min-height: 700px;
     }
     /* MEDIA QUERIES */
     
