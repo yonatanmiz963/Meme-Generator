@@ -335,7 +335,6 @@ function renderFilters() {
          class="filter-word"
           style="font-size: ${keywords[word] * 9}px;
            float: left;
-            margin: 0;
              padding: 5px">${capitalizeFirstLetter(word)}</h3>`
 
     }).join('');
