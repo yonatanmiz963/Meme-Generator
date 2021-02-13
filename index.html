@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
     <link rel="stylesheet" href="css/main.css">
+    <link href="font-awesome/css/all.css" rel="stylesheet">
 </head>
 
 <body onload="init()">
@@ -18,6 +19,7 @@
 
             <ul class="menu clean-list flex">
                 <li class="flex justify-content align-items"><a onclick="onOpenGallery()" class="nav-btn flex justify-content align-items">Gallery</a></li>
+
                 <li class="flex"><a class="nav-btn flex justify-content align-items" onclick="onOpenMemes()">Memes</a></li>
             </ul>
 
@@ -138,8 +140,7 @@
         <section class="gallery main-container">
 
             <div class="search-bar main-container flex ">
-
-                <input onchange="onSearchImg()" class="search-input" placeholder="Search" list="imgs" id="img" name="search-filter">
+                <input onchange="onSearchImg()" class="search-input" placeholder="  Search" list="imgs" id="img" name="search-filter">
                 <datalist id="imgs">
                   <option value="Happy">
                   <option value="Funny">

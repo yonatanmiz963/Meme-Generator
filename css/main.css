@@ -4,7 +4,7 @@
     
     body {
         margin: 0;
-        background-color: lightgray;
+        background-color: rgb(233, 233, 233);
         /* position: relative; */
     }
     /* BASICS */
@@ -104,21 +104,38 @@
         overflow: hidden;
     }
     
-    header {
+    .header {
         background-color: #408af8;
+        /* -webkit-box-shadow: 1px 31px 35px 16px rgba(0, 0, 0, 0.46); */
+        box-shadow: 1px 31px 35px 16px rgba(0, 0, 0, 0.46);
     }
     
     .menu li:first-of-type {
-        margin-inline-end: 20px;
+        border-right: 1px solid #fff;
+    }
+    
+    .menu a {
+        height: 100%;
+        width: 100%;
+        color: #fff;
+    }
+    
+    .menu a:hover {
+        background-color: #1663d8;
+        -webkit-box-shadow: inset -6px -11px 0px -6px#fff;
+        box-shadow: inset -6px -11px 0px -6px #fff;
+        font-weight: bold;
     }
     
     .menu li {
         height: 66px;
-        width: 66px;
+        width: 100px;
     }
     
     .nav-btn {
-        height: 100%
+        height: 100%;
+        font-family: comic-regular;
+        font-size: 18px;
     }
     
     .img-container {
