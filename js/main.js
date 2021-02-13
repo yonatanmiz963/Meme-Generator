@@ -30,7 +30,6 @@ function resizeCanvas() {
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetWidth;
 
-
     // DIFF ASPECT RATIOS
     // gElCanvas.width = elContainer.offsetWidth;
     // gElCanvas.height = (imgHeight * gElCanvas.width) / imgWidth;
@@ -41,6 +40,9 @@ function onLoadImage(id) {
     getCurrId();
     let elGallery = document.querySelector('.gallery');
     if (!elGallery.classList.contains('hide')) elGallery.classList.toggle('hide');
+
+    let elSearch = document.querySelector('.search');
+    if (!elSearch.classList.contains('hide')) elSearch.classList.toggle('hide');
 
     let elProfile = document.querySelector('.profile');
     if (!elProfile.classList.contains('hide')) elProfile.classList.toggle('hide');
@@ -223,7 +225,6 @@ function downloadImg(elLink) {
 
 function onSaveMeme() {
     let memeURL = gElCanvas.toDataURL('image/jpeg');
-    console.log('memeURL:', memeURL)
     saveMemes(memeURL);
 }
 
@@ -241,11 +242,15 @@ function onOpenMemes() {
         elMemesContainer.innerHTML = memesHTML;
     }
 
+    document.body.style.cursor = 'default';
     let elGallery = document.querySelector('.gallery');
     if (!elGallery.classList.contains('hide')) elGallery.classList.toggle('hide');
 
     let elProfile = document.querySelector('.profile');
     if (!elProfile.classList.contains('hide')) elProfile.classList.toggle('hide');
+
+    let elSearch = document.querySelector('.search');
+    if (!elSearch.classList.contains('hide')) elSearch.classList.toggle('hide');
 
     let elEditor = document.querySelector('.editor');
     if (!elEditor.classList.contains('hide')) elEditor.classList.toggle('hide');
@@ -461,8 +466,11 @@ function onOpenGallery() {
     let elGallery = document.querySelector('.gallery');
 
     if (!elGallery.classList.contains('hide')) return;
-
+    document.body.style.cursor = 'default';
     elGallery.classList.toggle('hide');
+
+    let elSearch = document.querySelector('.search');
+    elSearch.classList.toggle('hide');
 
     let elEditor = document.querySelector('.editor');
     if (!elEditor.classList.contains('hide')) elEditor.classList.toggle('hide');

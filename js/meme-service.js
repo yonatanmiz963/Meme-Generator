@@ -121,7 +121,6 @@ function setFilterFreq(filter) {
 
 function saveMemes(url) {
     gMeme.url = url;
-    console.log(gMeme);
     let memes = getMemes();
     if (memes === null) {
         memes = [];
@@ -147,11 +146,9 @@ function getCurrId() {
 
 function getMemeById(id) {
     let memes = getMemes();
-    console.log(memes);
     let meme = memes.find(meme => {
         return meme.id === id
     });
-    console.log(meme);
 
     return meme;
 }

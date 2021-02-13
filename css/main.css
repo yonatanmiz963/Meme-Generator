@@ -124,6 +124,10 @@ main {
     border-right: 1px solid rgb(177, 177, 177);
 }
 
+.profile {
+    background-color: white;
+}
+
 .menu a {
     height: 100%;
     width: 100%;
@@ -164,7 +168,7 @@ main {
 
 .image:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.05, 1.05);
 }
 
 .gallery {
@@ -173,7 +177,7 @@ main {
 }
 
 .editor {
-    background-color: #E3E3E3;
+    background-color: rgb(233, 233, 233);
     height: 700px;
     -webkit-animation: slide-down .3s ease-out;
 }
@@ -237,7 +241,7 @@ main {
 
 .editor-btn:hover {
     background-color: #599cff;
-    transform: scale(1.05);
+    transform: scale(1.05, 1.05);
 }
 
 .button-image {
@@ -248,7 +252,7 @@ main {
 .profile-container {
     width: 892px;
     height: 323px;
-    background-color: rgb(233, 233, 233);
+    background-color: white;
 }
 
 .social-link {
@@ -257,6 +261,9 @@ main {
     background-color: #222222;
     border-radius: 50%;
     font-size: 1.5rem;
+}
+
+.social-link a {
     color: white;
 }
 
@@ -339,10 +346,12 @@ main {
     border-radius: .625rem;
     margin-inline-end: 20px;
     font-family: jaldi-regular, sans-serif;
+    background-color: rgb(233, 233, 233);
 }
 
 .search-bar {
     padding-top: 10px;
+    background-color: white;
 }
 
 .filter-word {
@@ -353,7 +362,7 @@ main {
 }
 
 .filter-word:hover {
-    transform: scale(1.05);
+    transform: scale(1.05, 1.05);
     cursor: pointer;
 }
 
@@ -373,6 +382,7 @@ main {
     display: flex;
     overflow-y: scroll;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .filter-words>* {
@@ -388,7 +398,7 @@ main {
 }
 
 .meme:hover {
-    transform: scale(1.05);
+    transform: scale(1.05, 1.05);
     cursor: pointer;
 }
 
@@ -444,6 +454,10 @@ main {
 
 .share-form>* {
     margin: 10px;
+}
+
+.search {
+    background-color: white;
 }
 
 
