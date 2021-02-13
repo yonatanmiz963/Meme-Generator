@@ -257,6 +257,8 @@ function onOpenMemes() {
 
     let elMemesSection = document.querySelector('.my-memes');
     elMemesSection.classList.toggle('hide');
+
+    onToggleMenu();
 }
 
 function onLoadMeme(id) {
@@ -480,6 +482,8 @@ function onOpenGallery() {
 
     let elMemes = document.querySelector('.my-memes');
     if (!elMemes.classList.contains('hide')) elMemes.classList.toggle('hide');
+
+    onToggleMenu();
 }
 
 
@@ -513,5 +517,9 @@ function loadImageFromInput(ev, onImageReady) {
         gImg = img
     }
     reader.readAsDataURL(ev.target.files[0])
+}
 
+function onToggleMenu() {
+    let elBody = document.querySelector('body');
+    elBody.classList.toggle('menu-open');
 }

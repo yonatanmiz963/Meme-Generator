@@ -11,12 +11,13 @@
 </head>
 
 <body onload="init()">
+    <div class="main-screen" onclick="onToggleMenu()"></div>
 
     <header class="header">
         <nav class="nav-bar flex space-between main-container align-items">
 
             <div class="logo"><img src="design/logo/LOGO.png"></div>
-
+            <a class="burger flex justify-content align-items" onclick="onToggleMenu()"><i class="fas fa-bars"></i></a>
             <ul class="menu clean-list flex">
                 <li class="flex justify-content align-items"><a onclick="onOpenGallery()" class="nav-btn flex justify-content align-items">Gallery</a></li>
 
