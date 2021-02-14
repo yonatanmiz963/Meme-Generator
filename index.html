@@ -33,24 +33,27 @@
 
         <section class="editor main-container flex space-between hide">
 
-            <div class="canvas-container">
-                <canvas id="my-canvas" width="500" height="500" style="box-shadow: 0px 2px 17px 2px #000000;"></canvas>
+            <div class="canvas-container flex align-items justify-content">
+                <canvas id="my-canvas" width="" height="" style="box-shadow: 0px 2px 17px 2px #000000;"></canvas>
             </div>
 
             <div class="normal-edit flex justify-content direction-column">
                 <div class="text-editor">
                     <input onchange="onChangeText()" class="text-input" name="line-text" value="" placeholder="  Add text">
-                    <a class="editor-btn flex justify-content align-items" onclick="onSwitchLine()"><img class="button-image" src="design/icons/switch-line.png"></a>
-                    <a class="editor-btn flex justify-content align-items" onclick="onAddLine()"><img class="button-image" src="design/icons/add.png"></a>
-                    <a class="editor-btn flex justify-content align-items" onclick="onDeleteLine()"><img class="button-image" src="design/icons/trash.png"></a>
-                    <a class="editor-btn flex justify-content align-items" onclick="onMoveLine()"><img class="button-image" src="design/icons/up-and-down-opposite-double-arrows-side-by-side.png"></a>
-                    <a class="editor-btn flex justify-content align-items" onclick="onMoveAside()"><img class="button-image" src="design/icons/double-arrow-icon-6.png"></a>
-
+                    <a class="switch-line-btn editor-btn flex justify-content align-items" title="switch line" onclick="onSwitchLine()"><img class="button-image" src="design/icons/switch-line.png"></a>
+                    <a class="add-line-btn editor-btn flex justify-content align-items" onclick="onAddLine()"><img class="button-image" src="design/icons/add.png"></a>
+                    <a class="delete-line-btn editor-btn flex justify-content align-items" onclick="onDeleteLine()"><img class="button-image" src="design/icons/trash.png"></a>
+                    <!-- <a class="editor-btn flex justify-content align-items" onclick="onMoveLine()"><img class="button-image" src="design/icons/up-and-down-opposite-double-arrows-side-by-side.png"></a> -->
+                    <a class="align-center-btn editor-btn flex justify-content align-items" onclick="onAlignText('center')"><img class="button-image" src="design/icons/center-text-alignment.png"></a>
+                    <a class="align-left-btn editor-btn flex justify-content align-items" onclick="onAlignText('right')"><img class="button-image" src="design/icons/align-to-left.png"></a>
+                    <a class="align-right-btn editor-btn flex justify-content align-items" onclick="onAlignText('left')"><img class="button-image" src="design/icons/align-to-right.png"></a>
+                    <!-- <a class="editor-btn flex justify-content align-items" onclick="onMoveAside()"><img class="button-image" src="design/icons/double-arrow-icon-6.png"></a> -->
+                    <a class="plus-font-btn editor-btn flex justify-content align-items" onclick="onChangeFontSize('+')"><img class="button-image" src="design/icons/increase font - icon.png"></a>
+                    <a class="minus-font-btn editor-btn flex justify-content align-items" onclick="onChangeFontSize('-')"><img class="button-image" src="design/icons/decrease font - icon.png"></a>
                 </div>
 
                 <div class="advanced-edit">
-                    <a class="editor-btn flex justify-content align-items" onclick="onChangeFontSize('+')"><img class="button-image" src="design/icons/increase font - icon.png"></a>
-                    <a class="editor-btn flex justify-content align-items" onclick="onChangeFontSize('-')"><img class="button-image" src="design/icons/decrease font - icon.png"></a>
+
                     <div class="emojis-container">
                         <a class="emoji" onclick="onAddEmoji(this)">🙂</a>
                         <a class="emoji" onclick="onAddEmoji(this)">💘 </a>
@@ -153,7 +156,9 @@
           <option value="Serious">
         </datalist>
 
-                <div class="filter-words"></div>
+                <div class="filter-words">
+
+                </div>
 
             </div>
 

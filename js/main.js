@@ -10,7 +10,6 @@ var gStartPos;
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 
 
-
 function init() {
     renderImgs();
     renderFilters();
@@ -20,19 +19,22 @@ function init() {
 function initCanvas() {
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
-    resizeCanvas();
     addListeners();
 }
 
 
-function resizeCanvas() {
+function resizeCanvas(imgWidth, imgHeight) {
     var elContainer = document.querySelector('.canvas-container');
-    gElCanvas.width = elContainer.offsetWidth;
-    gElCanvas.height = elContainer.offsetWidth;
 
     // DIFF ASPECT RATIOS
-    // gElCanvas.width = elContainer.offsetWidth;
-    // gElCanvas.height = (imgHeight * gElCanvas.width) / imgWidth;
+    gElCanvas.width = (imgHeight * elContainer.offsetWidth) / imgWidth;
+    gElCanvas.height = (imgHeight * gElCanvas.width) / imgWidth;
+
+    gImg.width = gElCanvas.width;
+    gImg.height = gElCanvas.height;
+
+    // console.log('width:', gElCanvas.width)
+    // console.log('height:', gElCanvas.height)
 }
 
 
@@ -56,6 +58,8 @@ function onLoadImage(id) {
     var img = new Image();
     img.onload = () => {
         resizeCanvas(img.width, img.height);
+        img.width = gElCanvas.width;
+        img.height = gElCanvas.height;
         drawMeme(img);
     }
     img.src = image.url;
@@ -63,8 +67,8 @@ function onLoadImage(id) {
 }
 
 
-function drawMeme(gImg) {
-    gCtx.drawImage(gImg, 0, 0, gElCanvas.width, gElCanvas.height);
+function drawMeme(img = gImg) {
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
     drawTextLines();
     currLineRect();
 }
@@ -74,16 +78,19 @@ function currLineRect() {
     if (meme.lines.length === 0) return;
     if (gCurrLine === null) return;
 
-    let rectX = 0;
+    let currText = meme.lines[gCurrLine].txt;
+    document.querySelector('[name="line-text"]').value = currText;
+    let textWidth = gCtx.measureText(currText);
+
+    let rectX = meme.lines[gCurrLine].x - (textWidth.width / 2);
     let rectY = meme.lines[gCurrLine].y - meme.lines[gCurrLine].size;
     let rectHeight = meme.lines[gCurrLine].size + 10;
-    let rectWidth = 500;
+    let rectWidth = textWidth.width;
 
     meme.lines[gCurrLine].rectX = rectX;
     meme.lines[gCurrLine].rectY = rectY;
     meme.lines[gCurrLine].rectWidth = rectWidth;
     meme.lines[gCurrLine].rectHeight = rectHeight;
-    updateMeme(meme);
 
     gCtx.beginPath();
     gCtx.setLineDash([6]);
@@ -91,6 +98,8 @@ function currLineRect() {
     gCtx.strokeStyle = 'white';
     gCtx.rect(rectX, rectY, rectWidth, rectHeight);
     gCtx.stroke();
+
+    updateMeme(meme);
 }
 
 function drawTextLines() {
@@ -108,7 +117,7 @@ function drawText(text, align, color = 'white', size = 10, font = 'impact', y = 
     gCtx.strokeStyle = 'black';
     gCtx.fillStyle = color;
     gCtx.font = `${size}px ${font}`;
-    // gCtx.textAlign = align;
+    gCtx.textAlign = align;
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);
 }
@@ -117,22 +126,22 @@ function drawText(text, align, color = 'white', size = 10, font = 'impact', y = 
 function onSwitchLine() {
     if (gCurrLine || gCurrLine === 0) gCurrLine++;
     if (gCurrLine === null) gCurrLine = 0;
-
     let meme = getCurrMeme();
     if (gCurrLine >= meme.lines.length) {
         gCurrLine = null;
+        return;
     }
 
+    let currText = meme.lines[gCurrLine].txt;
+    document.querySelector('[name="line-text"]').value = currText;
     clearCanvas();
     drawMeme(gImg);
 }
 
 function onChangeText() {
     if (!gCurrLine && gCurrLine !== 0) return;
-
     let newText = document.querySelector('[name="line-text"]').value;
     changeText(newText, gCurrLine);
-    document.querySelector('[name="line-text"]').value = '';
     clearCanvas();
     drawMeme(gImg);
 }
@@ -195,7 +204,7 @@ function onSetFontColor() {
 }
 
 function onAddLine() {
-    let newLine = { txt: 'New Line', size: 50, align: 'start', color: 'white', y: 50, x: 125, isDragging: false, rectWidth: 0, rectHeight: 0, rectX: 0, rectY: 0 };
+    let newLine = { txt: 'New Line', size: 28, align: 'center', color: 'white', y: 50, x: 125, isDragging: false, rectWidth: 0, rectHeight: 0, rectX: 0, rectY: 0 };
     let meme = getCurrMeme();
     meme.lines.push(newLine);
     gCurrLine = meme.lines.length - 1;
@@ -267,14 +276,16 @@ function onLoadMeme(id) {
     let elEditor = document.querySelector('.editor');
     if (elEditor.classList.contains('hide')) elEditor.classList.toggle('hide');
     initCanvas();
-
     var img = new Image();
     img.onload = () => {
-        resizeCanvas();
+
+        resizeCanvas(img.width, img.height);
+        img.width = gElCanvas.width;
+        img.height = gElCanvas.height;
         drawMeme(img);
     }
+    img.src = meme.url;
     gImg = img;
-    gImg.src = meme.url;
 
     let elMemesSection = document.querySelector('.my-memes');
     elMemesSection.classList.toggle('hide');
@@ -326,32 +337,27 @@ function renderImgs() {
 
 
 function renderFilters() {
-    let keywords = getKeywords();
-    let filterWords = [];
+    let filters = getFilters();
 
-    for (const keyword in keywords) {
-        if (Object.hasOwnProperty.call(keywords, keyword)) {
-            filterWords.push(keyword);
-        }
-    }
+    let elNextFilters = `<a class="more-filters" onclick="onSetPage()">More...</a>`;
 
-    let filtersHTML = filterWords.map(word => {
-
+    let filtersHTML = filters.map(word => {
         return `<h3 onclick="onChooseFilter(this)"
-        data-filter="${word}"
+        data-filter="${word.keyword}"
          class="filter-word"
-          style="font-size: ${keywords[word] * 9}px;
+          style="font-size: ${word.used * 8}px;
            float: left;
-             padding: 5px">${capitalizeFirstLetter(word)}</h3>`
+             padding: 5px">${capitalizeFirstLetter(word.keyword)}</h3>`
 
     }).join('');
 
     let elFiltersContainer = document.querySelector('.filter-words');
-    elFiltersContainer.innerHTML = filtersHTML;
+    elFiltersContainer.innerHTML = filtersHTML + elNextFilters;
 }
 
 function onChooseFilter(elFilter) {
     let filter = elFilter.getAttribute('data-filter');
+    document.querySelector('[name="search-filter"]').value = filter;
     setFilterFreq(filter);
     setFilter(filter);
     renderFilters();
@@ -382,9 +388,10 @@ function isRectClicked(clickedPos) {
 
 function getEvPos(ev) {
     var pos = {
-        x: ev.offsetX,
-        y: ev.offsetY
-    }
+            x: ev.offsetX,
+            y: ev.offsetY
+        }
+        // console.log('curr pos', pos);
 
     if (gTouchEvs.includes(ev.type)) {
         ev.preventDefault();
@@ -410,6 +417,8 @@ function onMove(ev) {
     if (gCurrLine === null) return;
 
     let meme = getMeme();
+    if (meme.lines.length === 0) return;
+
     if (meme.lines[gCurrLine].isDragging) {
         const pos = getEvPos(ev)
         const dx = pos.x - gStartPos.x
@@ -459,7 +468,7 @@ function addListeners() {
     addMouseListeners()
     addTouchListeners()
     window.addEventListener('resize', () => {
-        resizeCanvas()
+        resizeCanvas(gImg.width, gImg.height);
         drawMeme(gImg);
     });
 }
@@ -490,7 +499,7 @@ function onOpenGallery() {
 
 function onAddEmoji(elEmoji) {
     let emoji = elEmoji.innerHTML;
-    let newEmoji = { txt: emoji, size: 50, align: 'start', color: 'white', y: 50, x: 125, isDragging: false, rectWidth: 0, rectHeight: 0, rectX: 0, rectY: 0 };
+    let newEmoji = { txt: emoji, size: 50, align: 'center', color: 'white', y: 50, x: 125, isDragging: false, rectWidth: 0, rectHeight: 0, rectX: 0, rectY: 0 };
     let meme = getCurrMeme();
     meme.lines.push(newEmoji);
     gCurrLine = meme.lines.length - 1;
@@ -501,9 +510,11 @@ function onAddEmoji(elEmoji) {
 
 
 
-
 function onImgInput(ev) {
-    loadImageFromInput(ev, drawMeme);
+    loadImageFromInput(ev, () => {
+        resizeCanvas(gImg.width, gImg.height);
+        drawMeme();
+    });
 }
 
 function loadImageFromInput(ev, onImageReady) {
@@ -514,12 +525,33 @@ function loadImageFromInput(ev, onImageReady) {
         var img = new Image()
         img.onload = onImageReady.bind(null, img)
         img.src = event.target.result
-        gImg = img
+        gImg = img;
     }
     reader.readAsDataURL(ev.target.files[0])
+    clearCanvas();
+
 }
 
 function onToggleMenu() {
     let elBody = document.querySelector('body');
     elBody.classList.toggle('menu-open');
+}
+
+
+
+function onAlignText(align) {
+    console.log(align);
+    let meme = getCurrMeme();
+    meme.lines[gCurrLine].align = align;
+
+    updateMeme(meme);
+    clearCanvas();
+    drawMeme(gImg);
+}
+
+
+function onSetPage() {
+    increasePageIdx();
+    console.log('work');
+    renderFilters();
 }
